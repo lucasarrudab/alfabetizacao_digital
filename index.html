@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajudante Tech - Alfabetização Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+</head>
+<body>
+
+<div id="login-view" class="view active screen-padding">
+    <div class="text-center">
+        <div class="icon-circle bg-primary text-white"><span class="material-symbols-outlined" style="font-size: 48px;">smartphone</span></div>
+        <h1 class="title">Ajudante Tech</h1>
+        <p class="subtitle mb-lg">Aprender tecnologia de forma simples</p>
+    </div>
+
+    <div class="card">
+        <h2>Bem-vindo de Volta</h2>
+        <p class="text-muted mb-md">Entre para continuar sua jornada de aprendizado</p>
+
+        <div class="input-group">
+            <label>Endereço de Email <span class="material-symbols-outlined help-icon" title="Seu endereço eletrônico, ex: nome@email.com">help</span></label>
+            <input type="email" placeholder="seunome@email.com">
+        </div>
+
+        <div class="input-group">
+            <label>Senha <span class="material-symbols-outlined help-icon" title="Seu código secreto">help</span></label>
+            <input type="password" placeholder="Digite sua senha">
+        </div>
+
+        <button class="btn btn-primary w-full btn-large" onclick="app.login()">Entrar</button>
+    </div>
+</div>
+
+<div id="app-view" class="view">
+
+    <main id="tab-home" class="tab-content active screen-padding">
+        <div class="flex-center" style="justify-content: space-between; margin-bottom: 8px;">
+            <h2 class="title" style="margin: 0;">Bem-vindo!</h2>
+            <button class="btn" onclick="app.logout()" style="background: transparent; color: var(--danger); padding: 8px;">
+                <span class="material-symbols-outlined">logout</span> Sair
+            </button>
+        </div>
+        <p class="text-muted mb-md">Vamos explorar os aplicativos do seu telefone. Toque em qualquer um para saber mais.</p>
+
+        <div class="grid-2">
+        </div>
+
+        <div class="card bg-gradient-blue text-white mt-md">
+            <h3>💡 Dica do Dia</h3>
+            <p>Não tenha medo de explorar! Você não pode quebrar seu telefone tocando por aí. A maioria das ações pode ser desfeita com o botão voltar.</p>
+        </div>
+    </main>
+
+    <main id="tab-tutoriais" class="tab-content screen-padding">
+        <h2 class="title">Tutoriais Passo a Passo</h2>
+        <p class="text-muted mb-md">Escolha um aplicativo para aprender a usá-lo. Vamos guiá-lo em cada etapa!</p>
+
+        <div id="tutoriais-list" class="flex-col gap-md">
+        </div>
+    </main>
+
+    <div id="tutorial-detail-view" class="view-overlay hidden">
+        <div class="detail-header" id="detail-header">
+            <button class="btn-back" onclick="app.closeTutorial()"><span class="material-symbols-outlined">arrow_back</span> Voltar</button>
+            <div class="detail-title-group">
+                <div class="icon-circle bg-white" id="detail-icon"></div>
+                <h1 id="detail-title">Nome do App</h1>
+            </div>
+        </div>
+        <div class="screen-padding" id="detail-content">
+        </div>
+    </div>
+
+    <main id="tab-golpes" class="tab-content screen-padding">
+        <h2 class="title flex-center gap-sm"><span class="material-symbols-outlined text-danger">warning</span> Conscientização sobre Golpes</h2>
+        <p class="text-muted mb-md">Aprenda a identificar e se proteger de golpes comuns</p>
+
+        <div class="alert bg-danger-light text-danger-dark mb-md">
+            <strong>Lembre-se:</strong> Organizações legítimas nunca pedirão senhas, PINs ou pagamento via cartão de presente.
+        </div>
+
+        <div id="golpes-list" class="flex-col gap-md">
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <button onclick="app.switchTab('tab-home', this)" class="nav-item active">
+            <span class="material-symbols-outlined">grid_view</span>
+            <span>Início</span>
+        </button>
+        <button onclick="app.switchTab('tab-tutoriais', this)" class="nav-item">
+            <span class="material-symbols-outlined">menu_book</span>
+            <span>Tutoriais</span>
+        </button>
+        <button onclick="app.switchTab('tab-golpes', this)" class="nav-item">
+            <span class="material-symbols-outlined">security</span>
+            <span>Golpes</span>
+        </button>
+    </nav>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
