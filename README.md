@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-# alfabetizacao_digital
-=======
 # Letramento Digital na Terceira Idade
     Desenvolvimento de um workshop com interface simulada para promoção da autonomia.
 ## Sumário:
@@ -26,7 +23,7 @@ Nosso projeto foca no Letramento Digital, que vai além de apenas operar aparelh
 ## 4. Metodologia: Alfabetização Computacional Assistida (ACA)
 Diferente do ensino tradicional, utilizamos a abordagem ACA, que utiliza o suporte tecnológico para adaptar o conteúdo ao ritmo do usuário.
 
-- **Ambiente Seguro (Sandbox):** Por ser apenas um ambiente simulado, há a redução da ansiedade e o medo de erros, permitindo a  repetição do gesto motor até a consolidação da memória.
+- **Ambiente Seguro (Sandbox):** Por ser apenas um ambiente simulado, há a redução da ansiedade e o medo de erros, permitindo a repetição do gesto motor até a consolidação da memória.
 
 ## 5. Tecnologias e Acessibilidade
 O desenvolvimento prioriza a Acessibilidade Web (W3C/WCAG 2.1) e o Design Centrado no Usuário (UCD):
@@ -55,4 +52,3 @@ O desenvolvimento prioriza a Acessibilidade Web (W3C/WCAG 2.1) e o Design Centra
     - João Lucas Arruda Braga Girão Silveira
 
     Supervisão: Prof.ª Laldiane Pinheiro
->>>>>>> Stashed changes
