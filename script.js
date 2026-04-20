@@ -332,6 +332,34 @@ const app = {
       "Você clicou em 'Compartilhar'!\n\nNo mundo real, isso abriria uma lista com seus contatos do WhatsApp. É assim que você envia um vídeo engraçado ou uma notícia importante para seus filhos e amigos.",
     );
   },
+  openYoutubeSearch() {
+    const feed = document.getElementById("yt-feed-scroll");
+    const search = document.getElementById("yt-search-screen");
+    const player = document.getElementById("yt-video-player-screen");
+
+    if (feed && search) {
+      feed.classList.add("hidden");
+      player.classList.add("hidden");
+      search.classList.remove("hidden");
+      setTimeout(() => document.getElementById("yt-search-input").focus(), 100);
+    }
+
+    document.getElementById("yt-step-label").innerText = "Passo 3:";
+    document.getElementById("yt-step-text").innerText =
+      "Digite o que você quer assistir ou escolha uma sugestão abaixo.";
+  },
+  closeYoutubeSearch() {
+    const feed = document.getElementById("yt-feed-scroll");
+    const search = document.getElementById("yt-search-screen");
+
+    if (feed && search) {
+      search.classList.add("hidden");
+      feed.classList.remove("hidden");
+    }
+    document.getElementById("yt-step-label").innerText = "Passo 1:";
+    document.getElementById("yt-step-text").innerText =
+      "Toque na imagem do vídeo para começar a assistir.";
+  },
 };
 
 window.app = app;

@@ -22,7 +22,12 @@
     <div class="yt-header-icons">
       <span class="material-symbols-outlined">cast</span>
       <span class="material-symbols-outlined">notifications</span>
-      <span class="material-symbols-outlined">search</span>
+      <span
+        class="material-symbols-outlined"
+        onclick="app.openYoutubeSearch()"
+        style="cursor: pointer"
+        >search</span
+      >
     </div>
   </div>
 
@@ -210,6 +215,47 @@
             Nossa, acabei de fazer e ficou uma delícia! Muito obrigada vovó!
           </p>
         </div>
+      </div>
+    </div>
+  </div>
+  <div id="yt-search-screen" class="hidden">
+    <div class="yt-search-header">
+      <button class="yt-search-back" onclick="app.closeYoutubeSearch()">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <div class="yt-search-input-box">
+        <input
+          type="text"
+          placeholder="Pesquisar no YouTube"
+          id="yt-search-input"
+        />
+      </div>
+      <button class="yt-search-mic">
+        <span class="material-symbols-outlined">mic</span>
+      </button>
+    </div>
+
+    <div class="yt-search-suggestions">
+      <div class="yt-search-item">
+        <span class="material-symbols-outlined yt-history-icon">history</span>
+        <span>receita de bolo de milho</span>
+        <span class="material-symbols-outlined yt-arrow-up-left"
+          >north_west</span
+        >
+      </div>
+      <div class="yt-search-item">
+        <span class="material-symbols-outlined yt-history-icon">history</span>
+        <span>música sertaneja antiga</span>
+        <span class="material-symbols-outlined yt-arrow-up-left"
+          >north_west</span
+        >
+      </div>
+      <div class="yt-search-item">
+        <span class="material-symbols-outlined">search</span>
+        <span>como plantar orquídeas</span>
+        <span class="material-symbols-outlined yt-arrow-up-left"
+          >north_west</span
+        >
       </div>
     </div>
   </div>
