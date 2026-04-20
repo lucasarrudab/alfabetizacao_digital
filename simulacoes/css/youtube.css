@@ -7,7 +7,7 @@
   overflow: hidden !important;
 }
 
-.sim-coach-mark {
+.sim-coach-lou {
   background-color: var(--primary);
   color: white;
   padding: 16px;
@@ -178,6 +178,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
+  margin-bottom: 36px;
 }
 
 .yt-short-card {
