@@ -7,7 +7,7 @@
   overflow: hidden !important;
 }
 
-.sim-coach-mark {
+.sim-coach-lou {
   background-color: var(--primary);
   color: white;
   padding: 16px;
@@ -178,6 +178,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
+  margin-bottom: 36px;
 }
 
 .yt-short-card {
@@ -261,4 +262,130 @@
 
 .yt-nav-item.active {
   font-weight: bold;
+}
+
+.yt-video-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.yt-play-big {
+  color: white;
+  font-size: 64px !important;
+  opacity: 0.8;
+}
+
+.yt-back-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.yt-video-details {
+  padding: 12px;
+}
+
+.yt-v-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.yt-v-meta {
+  font-size: 13px;
+  color: #606060;
+  margin-bottom: 12px;
+}
+
+.yt-v-actions {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+  padding-bottom: 4px;
+}
+
+.yt-v-pill {
+  background-color: #f2f2f2;
+  padding: 8px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.yt-divider {
+  color: #ccc;
+  margin: 0 4px;
+}
+
+.yt-v-channel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 12px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.yt-v-channel-name {
+  font-weight: bold;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.yt-v-subs {
+  font-size: 12px;
+  color: #606060;
+}
+
+.yt-subscribe-btn {
+  background-color: #0f0f0f;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.yt-v-comments {
+  background-color: #f2f2f2;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.yt-comment-preview {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.yt-comment-preview p {
+  font-size: 12px;
+  color: #0f0f0f;
+  line-height: 1.3;
 }

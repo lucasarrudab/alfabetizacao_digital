@@ -1,8 +1,10 @@
 <div id="sim-youtube-view" class="view-overlay yt-theme">
-  <div class="sim-coach-mark">
-    <div>
-      <strong>Passo 1:</strong> Toque na imagem do vídeo para começar a
-      assistir.
+  <div class="sim-coach-lou">
+    <div id="yt-instruction">
+      <strong id="yt-step-label">Passo 1:</strong>
+      <span id="yt-step-text"
+        >Toque na imagem do vídeo para começar a assistir.</span
+      >
     </div>
     <button
       class="btn-close-sim"
@@ -149,6 +151,65 @@
       <div class="yt-nav-item">
         <div class="yt-avatar-small"></div>
         <span>Você</span>
+      </div>
+    </div>
+  </div>
+  <div id="yt-video-player-screen" class="hidden">
+    <div class="yt-video-placeholder">
+      <button class="yt-back-btn" onclick="app.closeYoutubeVideo()">
+        <span class="material-symbols-outlined">expand_more</span>
+      </button>
+      <span class="material-symbols-outlined yt-play-big">play_arrow</span>
+    </div>
+
+    <div class="yt-video-details">
+      <h2 class="yt-v-title">Como fazer um bolo de cenoura fofinho</h2>
+      <p class="yt-v-meta">468 mil visualizações • há 5 dias ...mais</p>
+
+      <div class="yt-v-actions">
+        <div class="yt-v-pill" onclick="app.likeYoutube()">
+          <span class="material-symbols-outlined" id="yt-like-icon"
+            >thumb_up</span
+          >
+          <span id="yt-like-count">42 mil</span>
+        </div>
+        <div class="yt-v-pill" onclick="app.shareYoutube()">
+          <span class="material-symbols-outlined">share</span> Compartilhar
+        </div>
+        <div class="yt-v-pill">
+          <span class="material-symbols-outlined">download</span> Download
+        </div>
+      </div>
+
+      <div class="yt-v-channel">
+        <div class="flex-center gap-sm">
+          <div class="yt-avatar"></div>
+          <div>
+            <p class="yt-v-channel-name">
+              Receitas da Vovó
+              <span class="material-symbols-outlined" style="font-size: 14px"
+                >check_circle</span
+              >
+            </p>
+            <p class="yt-v-subs">1,2 mi inscritos</p>
+          </div>
+        </div>
+        <button class="yt-subscribe-btn" onclick="app.subscribeYoutube()">
+          Inscrever-se
+        </button>
+      </div>
+
+      <div class="yt-v-comments">
+        <div class="flex-between">
+          <span>Comentários 1,2 mil</span>
+          <span class="material-symbols-outlined">unfold_more</span>
+        </div>
+        <div class="yt-comment-preview">
+          <div class="yt-avatar-small"></div>
+          <p>
+            Nossa, acabei de fazer e ficou uma delícia! Muito obrigada vovó!
+          </p>
+        </div>
       </div>
     </div>
   </div>
