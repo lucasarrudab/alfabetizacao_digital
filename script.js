@@ -1,3 +1,5 @@
+import { data } from "./data.js";
+
 const app = {
   // 1. Navegação SPA
   login() {
@@ -9,147 +11,38 @@ const app = {
   },
 
   logout() {
-    // Esconde o app e volta para a tela de login
     document.getElementById("app-view").classList.remove("active");
     document.getElementById("login-view").classList.add("active");
   },
 
   switchTab(tabId, btnElement) {
-    // Esconde todas as abas
     document
       .querySelectorAll(".tab-content")
       .forEach((tab) => tab.classList.remove("active"));
-    // Remove active dos botões
+
     document
       .querySelectorAll(".nav-item")
       .forEach((btn) => btn.classList.remove("active"));
 
-    // Mostra aba selecionada
     document.getElementById(tabId).classList.add("active");
-    btnElement.classList.add("active");
+    if (btnElement) btnElement.classList.add("active");
   },
 
-  // 2. Dados Extraídos do seu React
-  data: {
-    apps: [
-      {
-        id: "telefone",
-        name: "Telefone",
-        icon: "call",
-        color: "#22c55e",
-        desc: "Fazer ligações para família",
-        oldTech: "Telefone fixo antigo",
-      },
-      {
-        id: "youtube",
-        name: "YouTube",
-        icon: "play_circle",
-        color: "#dc2626",
-        desc: "Assistir vídeos",
-        oldTech: "Televisão e Videocassete",
-        tutorial:
-          "O YouTube é como ter uma TV ilimitada. Você escolhe o que assistir e quando.",
-      },
-      {
-        id: "uber",
-        name: "Uber",
-        icon: "directions_car",
-        color: "#000000",
-        desc: "Solicitar corridas",
-        oldTech: "Táxi e Telefonista",
-        tutorial:
-          "Como chamar um táxi, mas você vê onde o carro está pelo telefone.",
-      },
-    ],
-    glossario: [
-      {
-        id: "wifi",
-        category: "basic",
-        term: "Wi-Fi (Arco de ondas)",
-        icon: "wifi",
-        color: "#3b82f6",
-        definition:
-          "Conexão de internet sem fio. Permite usar a internet no celular sem gastar o seu plano de dados da operadora.",
-      },
-      {
-        id: "download",
-        category: "basic",
-        term: "Download (Seta para baixo)",
-        icon: "download",
-        color: "#10b981",
-        definition:
-          "Ato de trazer um arquivo, foto ou aplicativo da internet para ficar salvo dentro do seu telefone.",
-      },
-      {
-        id: "settings",
-        category: "basic",
-        term: "Configurações (Engrenagem)",
-        icon: "settings",
-        color: "#6b7280",
-        definition:
-          "Onde você altera o volume, brilho da tela e outras funções mecânicas do telefone.",
-      },
-      {
-        id: "like",
-        category: "social",
-        term: "Curtir (Coração ou Joinha)",
-        icon: "favorite",
-        color: "#ef4444",
-        definition:
-          "Serve para mostrar que você gostou de uma foto, vídeo ou comentário feito por outra pessoa.",
-      },
-      {
-        id: "share",
-        category: "social",
-        term: "Compartilhar (Seta torta)",
-        icon: "share",
-        color: "#8b5cf6",
-        definition:
-          "Pega algo que você está vendo (como um vídeo) e envia para outra pessoa no WhatsApp ou Facebook.",
-      },
-      {
-        id: "profile",
-        category: "social",
-        term: "Perfil (Bonequinho)",
-        icon: "person",
-        color: "#f59e0b",
-        definition:
-          "A sua 'identidade' naquele aplicativo. Onde ficam sua foto e suas informações pessoais.",
-      },
-    ],
-    golpes: [
-      {
-        title: "Golpes por Telefone",
-        icon: "phone_in_talk",
-        color: "#fee2e2",
-        textcolor: "#dc2626",
-        desc: "Se passando por órgãos do governo.",
-        tips: ["Desligue imediatamente", "Nunca forneça dados pessoais"],
-      },
-      {
-        title: "Phishing por Email",
-        icon: "mail",
-        color: "#ffedd5",
-        textcolor: "#ea580c",
-        desc: "Emails falsos pedindo senhas.",
-        tips: ["Não clique em links", "Exclua e marque como spam"],
-      },
-    ],
-  },
-
-  // 3. Renderização Dinâmica
+  // 2. Renderização Dinâmica
   renderTutoriais() {
     const container = document.getElementById("tutoriais-list");
-    container.innerHTML = this.data.apps
+    if (!container) return;
+
+    container.innerHTML = data.apps
       .map(
-        (app) => `
-            <div class="card card-interactive" onclick="app.openTutorial('${app.id}')" style="display: flex; gap: 16px; align-items: center;">
-                <div class="icon-circle" style="background-color: ${app.color}; margin: 0; width: 50px; height: 50px;">
-                    <span class="material-symbols-outlined" style="font-size: 24px;">${app.icon}</span>
+        (appItem) => `
+            <div class="card card-interactive" onclick="app.openTutorial('${appItem.id}')" style="display: flex; gap: 16px; align-items: center;">
+                <div class="icon-circle" style="background-color: ${appItem.color}; margin: 0; width: 50px; height: 50px;">
+                    <span class="material-symbols-outlined" style="font-size: 24px;">${appItem.icon}</span>
                 </div>
                 <div>
-                    <h3 style="font-size: 18px;">${app.name}</h3>
-                    <div class="old-tech-badge">${app.oldTech}</div>
+                    <h3 style="font-size: 18px;">${appItem.name}</h3>
+                    <div class="old-tech-badge">${appItem.oldTech}</div>
                 </div>
                 <span class="material-symbols-outlined" style="margin-left: auto; color: #9ca3af;">chevron_right</span>
             </div>
@@ -181,18 +74,16 @@ const app = {
     let title = "";
 
     if (category === "all") {
-      filteredList = this.data.glossario;
+      filteredList = data.glossario;
       title = "Todos os Símbolos";
-    } else if (category === "basic") {
-      filteredList = this.data.glossario.filter(
-        (item) => item.category === "basic",
+    } else {
+      filteredList = data.glossario.filter(
+        (item) => item.category === category,
       );
-      title = "Parte 1: Símbolos Básicos";
-    } else if (category === "social") {
-      filteredList = this.data.glossario.filter(
-        (item) => item.category === "social",
-      );
-      title = "Parte 2: Redes Sociais";
+      title =
+        category === "basic"
+          ? "Parte 1: Símbolos Básicos"
+          : "Parte 2: Redes Sociais";
     }
 
     document.getElementById("glossario-category-title").innerText = title;
@@ -216,7 +107,7 @@ const app = {
       return;
     }
 
-    const filteredList = this.data.glossario.filter(
+    const filteredList = data.glossario.filter(
       (item) =>
         item.term.toLowerCase().includes(searchTerm) ||
         item.definition.toLowerCase().includes(searchTerm),
@@ -225,37 +116,19 @@ const app = {
     categoriesDiv.classList.add("hidden");
     resultsDiv.classList.remove("hidden");
 
-    if (filteredList.length === 0) {
-      resultsDiv.innerHTML = `<p class="text-center text-muted mt-lg" style="font-size: 18px;">Nenhum símbolo encontrado para "${query}".</p>`;
-    } else {
-      resultsDiv.innerHTML = this.generateGlossarioHTML(filteredList);
-    }
+    resultsDiv.innerHTML =
+      filteredList.length === 0
+        ? `<p class="text-center text-muted mt-lg">Nenhum símbolo encontrado para "${query}".</p>`
+        : this.generateGlossarioHTML(filteredList);
   },
 
-  renderGlossario() {
-    const container = document.getElementById("glossario-list");
-    if (!container) return;
-
-    container.innerHTML = this.data.glossario
-      .map(
-        (item) => `
-            <div class="card" style="display: flex; gap: 16px; align-items: flex-start; margin-bottom: 12px;">
-                <div class="icon-circle" style="background-color: ${item.color}; margin: 0; width: 48px; height: 48px; flex-shrink: 0;">
-                    <span class="material-symbols-outlined" style="font-size: 24px;">${item.icon}</span>
-                </div>
-                <div>
-                    <h3 style="font-size: 18px; color: #1f2937; margin-bottom: 4px;">${item.term}</h3>
-                    <p style="color: #4b5563; font-size: 15px; line-height: 1.5;">${item.definition}</p>
-                </div>
-            </div>
-        `,
-      )
-      .join("");
-  },
+  renderGlossario() {},
 
   renderGolpes() {
     const container = document.getElementById("golpes-list");
-    container.innerHTML = this.data.golpes
+    if (!container) return;
+
+    container.innerHTML = data.golpes
       .map(
         (golpe) => `
             <div class="card" style="border-top: 4px solid ${golpe.textcolor};">
@@ -275,9 +148,9 @@ const app = {
       .join("");
   },
 
-  // 4. Detalhe do Tutorial
+  // 3. Sistema de Tutorial e Simulação
   openTutorial(appId) {
-    const appData = this.data.apps.find((a) => a.id === appId);
+    const appData = data.apps.find((a) => a.id === appId);
     if (!appData) return;
 
     const header = document.getElementById("detail-header");
@@ -296,7 +169,10 @@ const app = {
             
             <h2 class="mb-md">Passo a Passo</h2>
             <div class="card mb-md">
-                <h3 class="flex-center gap-sm mb-md"><span style="background: ${appData.color}; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">1</span> Abra o Aplicativo</h3>
+                <h3 class="flex-center gap-sm mb-md">
+                  <span style="background: ${appData.color}; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">1</span> 
+                  Abra o Aplicativo
+                </h3>
                 <p>Procure o ícone na sua tela inicial e toque no botão abaixo para começar.</p>
             </div>
 
@@ -316,52 +192,61 @@ const app = {
     document.getElementById("tutorial-detail-view").classList.add("hidden");
   },
 
-  // 5. Sistema de Simulação e Transição (Splash Screen)
-  startAppSimulation(appId) {
-    const appData = this.data.apps.find((a) => a.id === appId);
-    if (!appData) {
-      console.error("App não encontrado!");
-      return;
-    }
+  async loadSimulation(appId) {
+    const container = document.getElementById("simulation-container");
 
-    const splash = document.getElementById("splash-screen-view");
-    const splashIcon = document.getElementById("splash-icon");
-    const splashName = document.getElementById("splash-name");
+    try {
+      const response = await fetch(`simulacoes/html/${appId}.html`);
+      if (!response.ok)
+        throw new Error("Não foi possível encontrar o arquivo da simulação.");
 
-    splash.style.backgroundColor = appData.color;
-    splashIcon.style.color = "#ffffff";
-    splashIcon.innerText = appData.icon;
-    splashName.style.color = "#ffffff";
-    document.getElementById("splash-name").innerText = appData.name;
-
-    this.closeTutorial();
-
-    splash.classList.remove("hidden");
-
-    setTimeout(() => {
-      splash.classList.add("hidden");
-
+      const html = await response.text();
+      container.innerHTML = html;
       const simViewId = `sim-${appId}-view`;
       const simView = document.getElementById(simViewId);
-
       if (simView) {
-        const feedScroll = simView.querySelector(".yt-feed");
-        if (feedScroll) feedScroll.scrollTop = 0;
-
         simView.classList.remove("hidden");
-      } else {
-        alert(`A simulação para ${appData.name} ainda será construída!`);
       }
+
+      const feedScroll = document.getElementById("yt-feed-scroll");
+      if (feedScroll) feedScroll.scrollTop = 0;
+    } catch (err) {
+      console.error("Erro ao carregar a simulação:", err);
+      alert("A simulação para este aplicativo ainda está sendo construída!");
+      document.getElementById("splash-screen-view").classList.add("hidden");
+    }
+  },
+
+  async startAppSimulation(appId) {
+    const appData = data.apps.find((a) => a.id === appId);
+    if (!appData) return;
+
+    const splash = document.getElementById("splash-screen-view");
+    document.getElementById("splash-icon").innerText = appData.icon;
+    document.getElementById("splash-name").innerText = appData.name;
+    splash.style.backgroundColor = appData.color;
+
+    this.closeTutorial();
+    splash.classList.remove("hidden");
+
+    // Carrega o arquivo HTML dinamicamente
+    await this.loadSimulation(appId);
+
+    // Remove o splash após um tempo para dar a sensação de carregamento do app
+    setTimeout(() => {
+      splash.classList.add("hidden");
     }, 1500);
   },
 
   closeSimulation(simId) {
-    document.getElementById(simId).classList.add("hidden");
+    const sim = document.getElementById(simId);
+    if (sim) sim.classList.add("hidden");
+    document.getElementById("simulation-container").innerHTML = ""; // Limpa para economizar memória
   },
 
   nextSimStep(appId, stepNumber) {
     if (appId === "youtube" && stepNumber === 2) {
-      alert("Sucesso! Você tocou no vídeo.");
+      alert("Sucesso! Você aprendeu a abrir um vídeo.");
       this.closeSimulation("sim-youtube-view");
     }
   },
@@ -370,7 +255,6 @@ const app = {
   handleYoutubeScroll(element) {
     const currentScroll = element.scrollTop;
     const navBar = document.getElementById("yt-bottom-nav-bar");
-
     if (!navBar) return;
 
     if (currentScroll > this.lastYtScroll + 5) {
@@ -378,7 +262,8 @@ const app = {
     } else if (currentScroll < this.lastYtScroll - 5) {
       navBar.classList.remove("nav-hidden");
     }
-
     this.lastYtScroll = currentScroll;
   },
 };
+
+window.app = app;

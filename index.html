@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ajudante Tech - Alfabetização Digital</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="simulacoes/css/youtube.css" />
+    <link rel="stylesheet" href="simulacoes/css/email.css" />
+    <link rel="stylesheet" href="simulacoes/css/telefone.css" />
+    <link rel="stylesheet" href="simulacoes/css/instagram.css" />
+    <link rel="stylesheet" href="simulacoes/css/uber.css" />
+    <link rel="stylesheet" href="simulacoes/css/google.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
       rel="stylesheet"
@@ -115,7 +121,7 @@
           </div>
         </div>
         <div class="spacer-lg"></div>
-        <div class="card bg-gradient-blue text-white mt-lg">
+        <div class="card bg-solid-blue text-white mt-lg">
           <h3>💡 Dica do dia!</h3>
           <p>
             Não tenha medo de explorar! Você não pode quebrar seu telefone
@@ -242,10 +248,7 @@
       </main>
 
       <div id="glossario-detail-view" class="view-overlay hidden">
-        <div
-          class="detail-header bg-gradient-blue"
-          id="glossario-detail-header"
-        >
+        <div class="detail-header bg-solid-blue" id="glossario-detail-header">
           <button class="btn-back" onclick="app.closeGlossarioCategory()">
             <span class="material-symbols-outlined">arrow_back</span> Voltar
           </button>
@@ -298,150 +301,6 @@
         </button>
       </nav>
     </div>
-    <div id="sim-youtube-view" class="view-overlay hidden yt-theme">
-      <div class="sim-coach-mark">
-        <div>
-          <strong>Passo 1:</strong> Toque na imagem do vídeo para começar a
-          assistir.
-        </div>
-        <button
-          class="btn-close-sim"
-          onclick="app.closeSimulation('sim-youtube-view')"
-        >
-          <span class="material-symbols-outlined">close</span> Sair
-        </button>
-      </div>
-
-      <div class="yt-header">
-        <div class="yt-logo">
-          <span class="material-symbols-outlined yt-icon-red">play_circle</span>
-          <span>YouTube</span>
-        </div>
-        <div class="yt-header-icons">
-          <span class="material-symbols-outlined">cast</span>
-          <span class="material-symbols-outlined">notifications</span>
-          <span class="material-symbols-outlined">search</span>
-        </div>
-      </div>
-
-      <div class="yt-chips-container">
-        <div class="yt-chip active">All</div>
-        <div class="yt-chip">Futebol</div>
-        <div class="yt-chip">Forró</div>
-        <div class="yt-chip">Receitas</div>
-        <div class="yt-chip">Cuidar da casa</div>
-        <div class="yt-chip">Ao vivo</div>
-        <div class="yt-chip">Jogos</div>
-        <div class="yt-chip">Música</div>
-        <div class="yt-chip">Mixes</div>
-      </div>
-
-      <div class="yt-feed" id="yt-feed-scroll" onscroll="app.handleYoutubeScroll(this)">
-        <div class="yt-video-card" onclick="app.nextSimStep('youtube', 2)">
-          <div class="yt-thumbnail">
-            <span class="yt-duration">27:32</span>
-          </div>
-          <div class="yt-video-info">
-            <div class="yt-avatar"></div>
-            <div class="yt-video-text">
-              <h3 class="yt-video-title">
-                Como fazer um bolo de cenoura fofinho
-              </h3>
-              <p class="yt-video-meta">
-                Receitas da Vovó • 468K views • 5 days ago
-              </p>
-            </div>
-            <span class="material-symbols-outlined yt-more-icon"
-              >more_vert</span
-            >
-          </div>
-        </div>
-        <div class="yt-shorts-shelf">
-        <div class="yt-shorts-header">
-          <div class="yt-shorts-title-group">
-            <span class="material-symbols-outlined yt-icon-red" style="font-size: 24px;">app_shortcut</span>
-            <h3 class="yt-shorts-title">Shorts</h3>
-          </div>
-          <span class="material-symbols-outlined yt-more-icon">more_vert</span>
-        </div>
-
-        <div class="yt-shorts-grid">
-          <div class="yt-short-card">
-            <div class="yt-short-bg" style="background-color: #166534;"></div>
-            <span class="material-symbols-outlined yt-short-more">more_vert</span>
-            <div class="yt-short-info">
-              <p class="yt-short-text">Golaço de falta no ângulo aos 45 do segundo tempo! ⚽</p>
-            </div>
-          </div>
-
-          <div class="yt-short-card">
-            <div class="yt-short-bg" style="background-color: #1e3a8a;"></div>
-            <span class="material-symbols-outlined yt-short-more">more_vert</span>
-            <div class="yt-short-info">
-              <p class="yt-short-text">Como consertar torneira pingando em 1 minuto 🔧</p>
-            </div>
-          </div>
-
-          <div class="yt-short-card">
-            <div class="yt-short-bg" style="background-color: #831843;"></div>
-            <span class="material-symbols-outlined yt-short-more">more_vert</span>
-            <div class="yt-short-info">
-              <p class="yt-short-text">A reação da Virgínia com a surpresa das filhas 😭❤️</p>
-            </div>
-          </div>
-
-          <div class="yt-short-card">
-            <div class="yt-short-bg" style="background-color: #7c2d12;"></div>
-            <span class="material-symbols-outlined yt-short-more">more_vert</span>
-            <div class="yt-short-info">
-              <p class="yt-short-text">Truque para limpar panela queimada sem esforço ✨</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="yt-video-card" onclick="app.nextSimStep('youtube', 2)">
-          <div class="yt-thumbnail">
-            <span class="yt-duration">27:32</span>
-          </div>
-          <div class="yt-video-info">
-            <div class="yt-avatar"></div>
-            <div class="yt-video-text">
-              <h3 class="yt-video-title">
-                Como fazer um bolo de cenoura fofinho
-              </h3>
-              <p class="yt-video-meta">
-                Receitas da Vovó • 468K views • 5 days ago
-              </p>
-            </div>
-            <span class="material-symbols-outlined yt-more-icon"
-              >more_vert</span
-            >
-          </div>
-        </div>
-      </div>
-
-      <div class="yt-bottom-nav" id="yt-bottom-nav-bar">
-        <div class="yt-nav-item active">
-          <span class="material-symbols-outlined">home</span>
-          <span>Início</span>
-        </div>
-        <div class="yt-nav-item">
-          <span class="material-symbols-outlined">app_shortcut</span>
-          <span>Shorts</span>
-        </div>
-        <div class="yt-nav-item">
-          <span class="material-symbols-outlined">add_circle</span>
-        </div>
-        <div class="yt-nav-item">
-          <span class="material-symbols-outlined">subscriptions</span>
-          <span>Inscrições</span>
-        </div>
-        <div class="yt-nav-item">
-          <div class="yt-avatar-small"></div>
-          <span>Você</span>
-        </div>
-      </div>
-    </div>
     <div
       id="splash-screen-view"
       class="view-overlay hidden"
@@ -461,6 +320,7 @@
       ></span>
       <h1 id="splash-name" style="margin-top: 16px; font-size: 32px"></h1>
     </div>
-    <script src="script.js"></script>
+    <div id="simulation-container"></div>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
