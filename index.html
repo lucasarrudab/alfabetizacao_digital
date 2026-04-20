@@ -61,7 +61,7 @@
     <div id="app-view" class="view">
       <main id="tab-home" class="tab-content active screen-padding">
         <div class="header-main">
-          <h2 class="title">Bem-vindo!</h2>
+          <h2 class="title" style="margin: 0">Bem-vindo!</h2>
           <button class="btn-logout" onclick="app.logout()">
             <span class="material-symbols-outlined">logout</span> Sair
           </button>
@@ -126,7 +126,13 @@
       </main>
 
       <main id="tab-tutoriais" class="tab-content screen-padding">
-        <h2 class="title">Tutoriais Passo a Passo</h2>
+        <div class="header-main">
+          <h2 class="title" style="margin: 0">Aplicativos</h2>
+          <button class="btn-logout" onclick="app.logout()">
+            <span class="material-symbols-outlined">logout</span> Sair
+          </button>
+        </div>
+
         <p class="text-muted mb-md">
           Escolha um aplicativo para aprender a usá-lo. Vamos guiá-lo em cada
           etapa!
@@ -149,7 +155,13 @@
       </div>
 
       <main id="tab-glossario" class="tab-content screen-padding">
-        <h2 class="title">Glossário Digital</h2>
+        <div class="header-main">
+          <h2 class="title" style="margin: 0">Glossário Digital</h2>
+          <button class="btn-logout" onclick="app.logout()">
+            <span class="material-symbols-outlined">logout</span> Sair
+          </button>
+        </div>
+
         <p class="text-muted mb-md">
           Pesquise uma palavra ou escolha uma categoria para aprender.
         </p>
@@ -163,7 +175,6 @@
             onkeyup="app.searchGlossario(this.value)"
           />
         </div>
-
         <div id="glossario-categories">
           <div class="nav-guide-list">
             <div class="guide-item" onclick="app.openGlossarioCategory('all')">
