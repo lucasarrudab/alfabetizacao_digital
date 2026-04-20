@@ -3,9 +3,9 @@ const app = {
   login() {
     document.getElementById("login-view").classList.remove("active");
     document.getElementById("app-view").classList.add("active");
-    this.renderDashboard();
     this.renderTutoriais();
     this.renderGolpes();
+    this.renderGlossario();
   },
 
   logout() {
@@ -61,6 +61,62 @@ const app = {
           "Como chamar um táxi, mas você vê onde o carro está pelo telefone.",
       },
     ],
+    glossario: [
+      {
+        id: "wifi",
+        category: "basic",
+        term: "Wi-Fi (Arco de ondas)",
+        icon: "wifi",
+        color: "#3b82f6",
+        definition:
+          "Conexão de internet sem fio. Permite usar a internet no celular sem gastar o seu plano de dados da operadora.",
+      },
+      {
+        id: "download",
+        category: "basic",
+        term: "Download (Seta para baixo)",
+        icon: "download",
+        color: "#10b981",
+        definition:
+          "Ato de trazer um arquivo, foto ou aplicativo da internet para ficar salvo dentro do seu telefone.",
+      },
+      {
+        id: "settings",
+        category: "basic",
+        term: "Configurações (Engrenagem)",
+        icon: "settings",
+        color: "#6b7280",
+        definition:
+          "Onde você altera o volume, brilho da tela e outras funções mecânicas do telefone.",
+      },
+      {
+        id: "like",
+        category: "social",
+        term: "Curtir (Coração ou Joinha)",
+        icon: "favorite",
+        color: "#ef4444",
+        definition:
+          "Serve para mostrar que você gostou de uma foto, vídeo ou comentário feito por outra pessoa.",
+      },
+      {
+        id: "share",
+        category: "social",
+        term: "Compartilhar (Seta torta)",
+        icon: "share",
+        color: "#8b5cf6",
+        definition:
+          "Pega algo que você está vendo (como um vídeo) e envia para outra pessoa no WhatsApp ou Facebook.",
+      },
+      {
+        id: "profile",
+        category: "social",
+        term: "Perfil (Bonequinho)",
+        icon: "person",
+        color: "#f59e0b",
+        definition:
+          "A sua 'identidade' naquele aplicativo. Onde ficam sua foto e suas informações pessoais.",
+      },
+    ],
     golpes: [
       {
         title: "Golpes por Telefone",
@@ -82,23 +138,6 @@ const app = {
   },
 
   // 3. Renderização Dinâmica
-  renderDashboard() {
-    const container = document.querySelector("#tab-home .grid-2");
-    container.innerHTML = this.data.apps
-      .map(
-        (app) => `
-            <div class="card card-interactive text-center" onclick="app.openTutorial('${app.id}')">
-                <div class="icon-circle" style="background-color: ${app.color}">
-                    <span class="material-symbols-outlined">${app.icon}</span>
-                </div>
-                <h3 style="font-size: 16px; margin-bottom: 4px;">${app.name}</h3>
-                <p style="font-size: 12px; color: #666;">${app.desc}</p>
-            </div>
-        `,
-      )
-      .join("");
-  },
-
   renderTutoriais() {
     const container = document.getElementById("tutoriais-list");
     container.innerHTML = this.data.apps
@@ -113,6 +152,101 @@ const app = {
                     <div class="old-tech-badge">${app.oldTech}</div>
                 </div>
                 <span class="material-symbols-outlined" style="margin-left: auto; color: #9ca3af;">chevron_right</span>
+            </div>
+        `,
+      )
+      .join("");
+  },
+
+  generateGlossarioHTML(list) {
+    return list
+      .map(
+        (item) => `
+        <div class="card" style="display: flex; gap: 16px; align-items: flex-start; margin-bottom: 12px;">
+            <div class="icon-circle" style="background-color: ${item.color}; margin: 0; width: 48px; height: 48px; flex-shrink: 0;">
+                <span class="material-symbols-outlined" style="font-size: 24px;">${item.icon}</span>
+            </div>
+            <div>
+                <h3 style="font-size: 18px; color: #1f2937; margin-bottom: 4px;">${item.term}</h3>
+                <p style="color: #4b5563; font-size: 15px; line-height: 1.5;">${item.definition}</p>
+            </div>
+        </div>
+    `,
+      )
+      .join("");
+  },
+
+  openGlossarioCategory(category) {
+    let filteredList = [];
+    let title = "";
+
+    if (category === "all") {
+      filteredList = this.data.glossario;
+      title = "Todos os Símbolos";
+    } else if (category === "basic") {
+      filteredList = this.data.glossario.filter(
+        (item) => item.category === "basic",
+      );
+      title = "Parte 1: Símbolos Básicos";
+    } else if (category === "social") {
+      filteredList = this.data.glossario.filter(
+        (item) => item.category === "social",
+      );
+      title = "Parte 2: Redes Sociais";
+    }
+
+    document.getElementById("glossario-category-title").innerText = title;
+    document.getElementById("glossario-category-content").innerHTML =
+      this.generateGlossarioHTML(filteredList);
+    document.getElementById("glossario-detail-view").classList.remove("hidden");
+  },
+
+  closeGlossarioCategory() {
+    document.getElementById("glossario-detail-view").classList.add("hidden");
+  },
+
+  searchGlossario(query) {
+    const searchTerm = query.toLowerCase().trim();
+    const categoriesDiv = document.getElementById("glossario-categories");
+    const resultsDiv = document.getElementById("glossario-search-results");
+
+    if (searchTerm === "") {
+      categoriesDiv.classList.remove("hidden");
+      resultsDiv.classList.add("hidden");
+      return;
+    }
+
+    const filteredList = this.data.glossario.filter(
+      (item) =>
+        item.term.toLowerCase().includes(searchTerm) ||
+        item.definition.toLowerCase().includes(searchTerm),
+    );
+
+    categoriesDiv.classList.add("hidden");
+    resultsDiv.classList.remove("hidden");
+
+    if (filteredList.length === 0) {
+      resultsDiv.innerHTML = `<p class="text-center text-muted mt-lg" style="font-size: 18px;">Nenhum símbolo encontrado para "${query}".</p>`;
+    } else {
+      resultsDiv.innerHTML = this.generateGlossarioHTML(filteredList);
+    }
+  },
+
+  renderGlossario() {
+    const container = document.getElementById("glossario-list");
+    if (!container) return;
+
+    container.innerHTML = this.data.glossario
+      .map(
+        (item) => `
+            <div class="card" style="display: flex; gap: 16px; align-items: flex-start; margin-bottom: 12px;">
+                <div class="icon-circle" style="background-color: ${item.color}; margin: 0; width: 48px; height: 48px; flex-shrink: 0;">
+                    <span class="material-symbols-outlined" style="font-size: 24px;">${item.icon}</span>
+                </div>
+                <div>
+                    <h3 style="font-size: 18px; color: #1f2937; margin-bottom: 4px;">${item.term}</h3>
+                    <p style="color: #4b5563; font-size: 15px; line-height: 1.5;">${item.definition}</p>
+                </div>
             </div>
         `,
       )

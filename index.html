@@ -60,28 +60,63 @@
 
     <div id="app-view" class="view">
       <main id="tab-home" class="tab-content active screen-padding">
-        <div
-          class="flex-center"
-          style="justify-content: space-between; margin-bottom: 8px"
-        >
-          <h2 class="title" style="margin: 0">Bem-vindo!</h2>
-          <button
-            class="btn"
-            onclick="app.logout()"
-            style="background: transparent; color: var(--danger); padding: 8px"
-          >
+        <div class="header-main">
+          <h2 class="title">Bem-vindo!</h2>
+          <button class="btn-logout" onclick="app.logout()">
             <span class="material-symbols-outlined">logout</span> Sair
           </button>
         </div>
+
         <p class="text-muted mb-md">
-          Vamos explorar os aplicativos do seu telefone. Toque em qualquer um
-          para saber mais.
+          Escolha um dos caminhos abaixo para começar a aprender:
         </p>
 
-        <div class="grid-2"></div>
+        <div class="nav-guide-list">
+          <div class="guide-item" onclick="app.switchTab('tab-tutoriais')">
+            <div class="guide-content">
+              <span class="material-symbols-outlined icon-bg-green">apps</span>
+              <div class="guide-text">
+                <span class="guide-title">Aplicativos</span>
+                <span class="guide-subtitle"
+                  >Aprenda a usar aplicativos como telefone, youtube e
+                  outros</span
+                >
+              </div>
+            </div>
+            <span class="material-symbols-outlined arrow">chevron_right</span>
+          </div>
 
-        <div class="card bg-gradient-blue text-white mt-md">
-          <h3>💡 Dica do Dia</h3>
+          <div class="guide-item" onclick="app.switchTab('tab-glossario')">
+            <div class="guide-content">
+              <span class="material-symbols-outlined icon-bg-blue"
+                >menu_book</span
+              >
+              <div class="guide-text">
+                <span class="guide-title">Glossário Digital</span>
+                <span class="guide-subtitle"
+                  >Entendendo símbolos e palavras que encontramos online</span
+                >
+              </div>
+            </div>
+            <span class="material-symbols-outlined arrow">chevron_right</span>
+          </div>
+
+          <div class="guide-item" onclick="app.switchTab('tab-golpes')">
+            <div class="guide-content">
+              <span class="material-symbols-outlined icon-bg-red">shield</span>
+              <div class="guide-text">
+                <span class="guide-title">Segurança e Golpes</span>
+                <span class="guide-subtitle"
+                  >Dicas de como ficar seguro online</span
+                >
+              </div>
+            </div>
+            <span class="material-symbols-outlined arrow">chevron_right</span>
+          </div>
+        </div>
+        <div class="spacer-lg"></div>
+        <div class="card bg-gradient-blue text-white mt-lg">
+          <h3>💡 Dica do dia!</h3>
           <p>
             Não tenha medo de explorar! Você não pode quebrar seu telefone
             tocando por aí. A maioria das ações pode ser desfeita com o botão
@@ -113,6 +148,98 @@
         <div class="screen-padding" id="detail-content"></div>
       </div>
 
+      <main id="tab-glossario" class="tab-content screen-padding">
+        <h2 class="title">Glossário Digital</h2>
+        <p class="text-muted mb-md">
+          Pesquise uma palavra ou escolha uma categoria para aprender.
+        </p>
+
+        <div class="search-container mb-lg">
+          <span class="material-symbols-outlined search-icon">search</span>
+          <input
+            type="text"
+            id="glossario-search"
+            placeholder="Buscar símbolo ou palavra..."
+            onkeyup="app.searchGlossario(this.value)"
+          />
+        </div>
+
+        <div id="glossario-categories">
+          <div class="nav-guide-list">
+            <div class="guide-item" onclick="app.openGlossarioCategory('all')">
+              <div class="guide-content">
+                <span class="material-symbols-outlined icon-bg-blue"
+                  >grid_view</span
+                >
+                <div class="guide-text">
+                  <span class="guide-title">Todos os Símbolos</span>
+                  <span class="guide-subtitle"
+                    >Dicionário completo de A a Z</span
+                  >
+                </div>
+              </div>
+              <span class="material-symbols-outlined arrow">chevron_right</span>
+            </div>
+
+            <div
+              class="guide-item"
+              onclick="app.openGlossarioCategory('basic')"
+            >
+              <div class="guide-content">
+                <span class="material-symbols-outlined icon-bg-green"
+                  >power_settings_new</span
+                >
+                <div class="guide-text">
+                  <span class="guide-title">Parte 1: Básicos</span>
+                  <span class="guide-subtitle"
+                    >Símbolos do próprio celular</span
+                  >
+                </div>
+              </div>
+              <span class="material-symbols-outlined arrow">chevron_right</span>
+            </div>
+
+            <div
+              class="guide-item"
+              onclick="app.openGlossarioCategory('social')"
+            >
+              <div class="guide-content">
+                <span class="material-symbols-outlined icon-bg-red"
+                  >thumb_up</span
+                >
+                <div class="guide-text">
+                  <span class="guide-title">Parte 2: Redes Sociais</span>
+                  <span class="guide-subtitle"
+                    >Curtir, compartilhar e perfis</span
+                  >
+                </div>
+              </div>
+              <span class="material-symbols-outlined arrow">chevron_right</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="glossario-search-results" class="hidden flex-col gap-md"></div>
+      </main>
+
+      <div id="glossario-detail-view" class="view-overlay hidden">
+        <div
+          class="detail-header bg-gradient-blue"
+          id="glossario-detail-header"
+        >
+          <button class="btn-back" onclick="app.closeGlossarioCategory()">
+            <span class="material-symbols-outlined">arrow_back</span> Voltar
+          </button>
+          <h1
+            id="glossario-category-title"
+            style="margin-top: 16px; font-size: 24px"
+          >
+            Categoria
+          </h1>
+        </div>
+        <div class="screen-padding" id="glossario-category-content"></div>
+      </div>
+
       <main id="tab-golpes" class="tab-content screen-padding">
         <h2 class="title flex-center gap-sm">
           <span class="material-symbols-outlined text-danger">warning</span>
@@ -139,8 +266,12 @@
           <span>Início</span>
         </button>
         <button onclick="app.switchTab('tab-tutoriais', this)" class="nav-item">
+          <span class="material-symbols-outlined">apps</span>
+          <span>Apps</span>
+        </button>
+        <button onclick="app.switchTab('tab-glossario', this)" class="nav-item">
           <span class="material-symbols-outlined">menu_book</span>
-          <span>Tutoriais</span>
+          <span>Glossário</span>
         </button>
         <button onclick="app.switchTab('tab-golpes', this)" class="nav-item">
           <span class="material-symbols-outlined">security</span>
