@@ -156,7 +156,7 @@
 
       <main id="tab-glossario" class="tab-content screen-padding">
         <div class="header-main">
-          <h2 class="title" style="margin: 0">Glossário</h2>
+          <h2 class="title" style="margin: 0">Glossário Digital</h2>
           <button class="btn-logout" onclick="app.logout()">
             <span class="material-symbols-outlined">logout</span> Sair
           </button>
@@ -170,15 +170,67 @@
           <span class="material-symbols-outlined search-icon">search</span>
           <input
             type="text"
-            id="glossary-search"
+            id="glossario-search"
             placeholder="Buscar símbolo ou palavra..."
-            onkeyup="app.searchGlossary(this.value)"
+            onkeyup="app.searchGlossario(this.value)"
           />
         </div>
+        <div id="glossario-categories">
+          <div class="nav-guide-list">
+            <div class="guide-item" onclick="app.openGlossarioCategory('all')">
+              <div class="guide-content">
+                <span class="material-symbols-outlined icon-bg-blue"
+                  >grid_view</span
+                >
+                <div class="guide-text">
+                  <span class="guide-title">Todos os Símbolos</span>
+                  <span class="guide-subtitle"
+                    >Dicionário completo de A a Z</span
+                  >
+                </div>
+              </div>
+              <span class="material-symbols-outlined arrow">chevron_right</span>
+            </div>
 
-        <div id="glossary-categories"></div>
+            <div
+              class="guide-item"
+              onclick="app.openGlossarioCategory('basic')"
+            >
+              <div class="guide-content">
+                <span class="material-symbols-outlined icon-bg-green"
+                  >power_settings_new</span
+                >
+                <div class="guide-text">
+                  <span class="guide-title">Parte 1: Básicos</span>
+                  <span class="guide-subtitle"
+                    >Símbolos do próprio celular</span
+                  >
+                </div>
+              </div>
+              <span class="material-symbols-outlined arrow">chevron_right</span>
+            </div>
 
-        <div id="glossary-search-results" class="hidden flex-col gap-md"></div>
+            <div
+              class="guide-item"
+              onclick="app.openGlossarioCategory('social')"
+            >
+              <div class="guide-content">
+                <span class="material-symbols-outlined icon-bg-red"
+                  >thumb_up</span
+                >
+                <div class="guide-text">
+                  <span class="guide-title">Parte 2: Redes Sociais</span>
+                  <span class="guide-subtitle"
+                    >Curtir, compartilhar e perfis</span
+                  >
+                </div>
+              </div>
+              <span class="material-symbols-outlined arrow">chevron_right</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="glossario-search-results" class="hidden flex-col gap-md"></div>
       </main>
 
       <div id="glossario-detail-view" class="view-overlay hidden">
@@ -200,20 +252,17 @@
       </div>
 
       <main id="tab-golpes" class="tab-content screen-padding">
-        <div class="header-main">
-          <h2 class="title" style="margin: 0">Segurança</h2>
-          <button class="btn-logout" onclick="app.logout()">
-            <span class="material-symbols-outlined">logout</span> Sair
-          </button>
-        </div>
-
+        <h2 class="title flex-center gap-sm">
+          <span class="material-symbols-outlined text-danger">warning</span>
+          Conscientização sobre Golpes
+        </h2>
         <p class="text-muted mb-md">
-          Aprenda a identificar e se proteger de golpes comuns.
+          Aprenda a identificar e se proteger de golpes comuns
         </p>
 
         <div class="alert bg-danger-light text-danger-dark mb-md">
           <strong>Lembre-se:</strong> Organizações legítimas nunca pedirão
-          senhas ou PINs.
+          senhas, PINs ou pagamento via cartão de presente.
         </div>
 
         <div id="golpes-list" class="flex-col gap-md"></div>
