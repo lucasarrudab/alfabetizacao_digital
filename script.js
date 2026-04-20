@@ -280,14 +280,12 @@ const app = {
     const appData = this.data.apps.find((a) => a.id === appId);
     if (!appData) return;
 
-    // Configura o Cabeçalho
     const header = document.getElementById("detail-header");
     header.style.backgroundColor = appData.color;
     document.getElementById("detail-title").innerText = appData.name;
     document.getElementById("detail-icon").innerHTML =
       `<span class="material-symbols-outlined" style="color: ${appData.color}">${appData.icon}</span>`;
 
-    // Configura o Conteúdo
     const content = document.getElementById("detail-content");
     content.innerHTML = `
             <div class="card mb-lg" style="border-left: 4px solid #3b82f6;">
@@ -299,8 +297,16 @@ const app = {
             <h2 class="mb-md">Passo a Passo</h2>
             <div class="card mb-md">
                 <h3 class="flex-center gap-sm mb-md"><span style="background: ${appData.color}; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">1</span> Abra o Aplicativo</h3>
-                <p>Procure o ícone na sua tela inicial e toque uma vez.</p>
+                <p>Procure o ícone na sua tela inicial e toque no botão abaixo para começar.</p>
             </div>
+
+            <button
+                class="btn w-full mt-md btn-large"
+                style="background-color: ${appData.color}; color: white;"
+                onclick="app.startAppSimulation('${appData.id}')"
+            >
+                <span class="material-symbols-outlined">play_arrow</span> Iniciar Simulação Prática
+            </button>
         `;
 
     document.getElementById("tutorial-detail-view").classList.remove("hidden");
@@ -308,5 +314,71 @@ const app = {
 
   closeTutorial() {
     document.getElementById("tutorial-detail-view").classList.add("hidden");
+  },
+
+  // 5. Sistema de Simulação e Transição (Splash Screen)
+  startAppSimulation(appId) {
+    const appData = this.data.apps.find((a) => a.id === appId);
+    if (!appData) {
+      console.error("App não encontrado!");
+      return;
+    }
+
+    const splash = document.getElementById("splash-screen-view");
+    const splashIcon = document.getElementById("splash-icon");
+    const splashName = document.getElementById("splash-name");
+
+    splash.style.backgroundColor = appData.color;
+    splashIcon.style.color = "#ffffff";
+    splashIcon.innerText = appData.icon;
+    splashName.style.color = "#ffffff";
+    document.getElementById("splash-name").innerText = appData.name;
+
+    this.closeTutorial();
+
+    splash.classList.remove("hidden");
+
+    setTimeout(() => {
+      splash.classList.add("hidden");
+
+      const simViewId = `sim-${appId}-view`;
+      const simView = document.getElementById(simViewId);
+
+      if (simView) {
+        const feedScroll = simView.querySelector(".yt-feed");
+        if (feedScroll) feedScroll.scrollTop = 0;
+
+        simView.classList.remove("hidden");
+      } else {
+        alert(`A simulação para ${appData.name} ainda será construída!`);
+      }
+    }, 1500);
+  },
+
+  closeSimulation(simId) {
+    document.getElementById(simId).classList.add("hidden");
+  },
+
+  nextSimStep(appId, stepNumber) {
+    if (appId === "youtube" && stepNumber === 2) {
+      alert("Sucesso! Você tocou no vídeo.");
+      this.closeSimulation("sim-youtube-view");
+    }
+  },
+
+  lastYtScroll: 0,
+  handleYoutubeScroll(element) {
+    const currentScroll = element.scrollTop;
+    const navBar = document.getElementById("yt-bottom-nav-bar");
+
+    if (!navBar) return;
+
+    if (currentScroll > this.lastYtScroll + 5) {
+      navBar.classList.add("nav-hidden");
+    } else if (currentScroll < this.lastYtScroll - 5) {
+      navBar.classList.remove("nav-hidden");
+    }
+
+    this.lastYtScroll = currentScroll;
   },
 };
