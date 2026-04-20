@@ -8,6 +8,14 @@ import { uber } from "./simulacoes/js/uber.js";
 import { youtube } from "./simulacoes/js/youtube.js";
 
 const app = {
+  ...dataHandler,
+  ...simulationEngine,
+  ...youtube,
+  ...uber,
+  ...instagram,
+  ...email,
+  ...google,
+  ...telefone,
   login() {
     document.getElementById("login-view").classList.remove("active");
     document.getElementById("app-view").classList.add("active");

@@ -1,6 +1,6 @@
 import { data } from "./data.js";
 
-export const ui = {
+export const dataHandler = {
   renderTutoriais() {
     const container = document.getElementById("tutoriais-list");
     if (!container) return;
