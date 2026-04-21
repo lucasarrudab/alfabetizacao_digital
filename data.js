@@ -28,6 +28,16 @@ export const data = {
       tutorial:
         "Como chamar um táxi, mas você vê onde o carro está pelo telefone.",
     },
+    {
+      id: "google",
+      name: "Pesquisa Google",
+      icon: "travel_explore",
+      color: "#4285F4",
+      desc: "Aprenda a pesquisar qualquer coisa na internet",
+      oldTech: "Enciclopédia Barsa ou Lista Telefônica",
+      tutorial:
+        "O Google é a porta de entrada para a internet. Antigamente, procurávamos livros ou catálogos para saber de algo. Hoje, basta escrever o que queremos na 'Barra de Pesquisa' e o Google encontra para nós.",
+    },
   ],
   glossario: [
     {
