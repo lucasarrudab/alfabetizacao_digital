@@ -99,7 +99,7 @@ const app = {
         const golpesDisponiveis = this.data.apps.filter(app => this.data.golpes.find(g => g.id === app.id));
 
         container.innerHTML = golpesDisponiveis.map(app => `
-          <div class="card card-interactive text-center" onclick="app.openGolpe('${app.id}')" style="border: 4px solid #e87e76;">
+          <div class="card card-interactive text-center" onclick="app.openGolpe('${app.id}')" style="border: 4px solid #ffd2cf;">
               <div class="icon-circle" style="background-color: ${app.color}">
                   <span class="material-symbols-outlined">${app.icon}</span>
               </div>
@@ -117,7 +117,8 @@ const app = {
         const header = document.getElementById('golpe-header');
         header.style.backgroundColor = '#dc2626';
         document.getElementById('golpe-title').innerText = 'Golpes no ' + appData.name;
-        document.getElementById('golpe-icon').innerHTML = `<span class="material-symbols-outlined" style="color: #dc2626">${appData.icon}</span>`;
+        document.getElementById('golpe-icon').innerHTML = `<span class="material-symbols-outlined
+" style="color: #dc2626">${appData.icon}</span>`;
 
         const content = document.getElementById('golpe-content');
         content.innerHTML = `
