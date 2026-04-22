@@ -1,48 +1,82 @@
 const app = {
-    // 1. Navegação SPA
+    // 1. Navegação e Validação SPA
     login() {
-        document.getElementById('login-view').classList.remove('active');
-        document.getElementById('app-view').classList.add('active');
-        this.renderDashboard();
-        this.renderTutoriais();
-        this.renderGolpes();
+        const emailInput = document.getElementById('login-email');
+        const passInput = document.getElementById('login-password');
+        const emailError = document.getElementById('email-error');
+        const passError = document.getElementById('password-error');
+
+        let isValid = true;
+
+        // Reseta os estilos de erro antes de testar
+        emailInput.classList.remove('input-error');
+        passInput.classList.remove('input-error');
+        emailError.classList.add('hidden');
+        passError.classList.add('hidden');
+
+        // Validação Pedagógica de Email
+        const emailVal = emailInput.value.trim();
+        if (!emailVal.includes('@') || !emailVal.includes('.')) {
+            emailError.classList.remove('hidden');
+            emailInput.classList.add('input-error');
+            isValid = false;
+        }
+
+        // Validação Pedagógica de Senha (mínimo 6 dígitos)
+        if (passInput.value.length < 6) {
+            passError.classList.remove('hidden');
+            passInput.classList.add('input-error');
+            isValid = false;
+        }
+
+        // Se tudo estiver certo, entra no app
+        if (isValid) {
+            document.getElementById('login-view').classList.remove('active');
+            document.getElementById('app-view').classList.add('active');
+            this.renderDashboard();
+            this.renderTutoriais();
+            this.renderGolpes();
+
+            // Limpa os campos para o próximo login
+            emailInput.value = '';
+            passInput.value = '';
+        }
     },
 
     logout() {
-        // Esconde o app e volta para a tela de login
         document.getElementById('app-view').classList.remove('active');
         document.getElementById('login-view').classList.add('active');
     },
 
     switchTab(tabId, btnElement) {
-        // Esconde todas as abas
         document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-        // Remove active dos botões
         document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
 
-        // Mostra aba selecionada
         document.getElementById(tabId).classList.add('active');
         btnElement.classList.add('active');
     },
 
-    // 2. Dados Extraídos do seu React
+    // 2. Dados do Aplicativo
     data: {
         apps: [
             { id: 'telefone', name: 'Telefone', icon: 'call', color: '#22c55e', desc: 'Fazer ligações para família', oldTech: 'Telefone fixo antigo' },
-            { id: 'youtube', name: 'YouTube', icon: 'play_circle', color: '#dc2626', desc: 'Assistir vídeos', oldTech: 'Televisão e Videocassete',
-                tutorial: 'O YouTube é como ter uma TV ilimitada. Você escolhe o que assistir e quando.'},
-            { id: 'uber', name: 'Uber', icon: 'directions_car', color: '#000000', desc: 'Solicitar corridas', oldTech: 'Táxi e Telefonista',
-                tutorial: 'Como chamar um táxi, mas você vê onde o carro está pelo telefone.' }
+            { id: 'youtube', name: 'YouTube', icon: 'play_circle', color: '#dc2626', desc: 'Assistir vídeos', oldTech: 'Televisão e Videocassete' },
+            { id: 'uber', name: 'Uber', icon: 'directions_car', color: '#000000', desc: 'Solicitar corridas', oldTech: 'Táxi e Telefonista' },
+            { id: 'mensagens', name: 'Mensagens', icon: 'chat', color: '#3b82f6', desc: 'Enviar textos rápidos', oldTech: 'Telegramas' },
+            { id: 'email', name: 'E-mail', icon: 'mail', color: '#ef4444', desc: 'Correspondência digital', oldTech: 'Correio Postal' },
+            { id: 'navegador', name: 'Navegador', icon: 'public', color: '#eab308', desc: 'Pesquisar na internet', oldTech: 'Biblioteca e Enciclopédia' }
         ],
         golpes: [
-            { title: 'Golpes por Telefone', icon: 'phone_in_talk', color: '#fee2e2', textcolor: '#dc2626', desc: 'Se passando por órgãos do governo.', tips: ['Desligue imediatamente', 'Nunca forneça dados pessoais'] },
-            { title: 'Phishing por Email', icon: 'mail', color: '#ffedd5', textcolor: '#ea580c', desc: 'Emails falsos pedindo senhas.', tips: ['Não clique em links', 'Exclua e marque como spam'] }
+            { id: 'telefone', name: 'Golpes por Telefone', alert: 'Ligação de falsos atendentes.', exemplos: ['"Aqui é do banco, sua conta foi bloqueada, me informe sua senha."', '"Você ganhou um prêmio, transfira uma taxa para liberar."'], tips: ['Desligue imediatamente, não converse.', 'O banco nunca pede sua senha por telefone.', 'Ligue de volta usando o número atrás do seu cartão.'] },
+            { id: 'mensagens', name: 'Golpes no WhatsApp/SMS', alert: 'Links maliciosos e falsos conhecidos.', exemplos: ['"Mãe, meu celular quebrou, anota meu número novo."', '"Sua encomenda foi taxada, clique aqui para pagar."'], tips: ['Nunca faça PIX urgente para conhecidos sem antes ligar e ouvir a voz deles.', 'Não clique em links SMS de números desconhecidos.'] },
+            { id: 'email', name: 'Phishing por Email', alert: 'E-mails falsos pedindo dados.', exemplos: ['"Sua conta Netflix será cancelada, atualize seu cartão."', '"Aviso da Receita Federal: pendência no CPF."'], tips: ['Verifique o remetente: o e-mail parece oficial?', 'Órgãos do governo não enviam cobranças por e-mail.', 'Não clique em links; acesse o site oficial pelo navegador.'] },
+            { id: 'navegador', name: 'Sites e Lojas Falsas', alert: 'Promoções boas demais para ser verdade.', exemplos: ['"Queima de estoque: Geladeira por R$ 300,00."', '"Site idêntico ao oficial, mas com URL estranha."'], tips: ['Desconfie de preços extremamente baixos.', 'Compre apenas em lojas conhecidas.', 'Verifique se o site possui um cadeado de segurança na barra superior.'] }
         ]
     },
 
     // 3. Renderização Dinâmica
     renderDashboard() {
-        const container = document.querySelector('#tab-home .grid-2');
+        const container = document.getElementById('home-grid');
         container.innerHTML = this.data.apps.map(app => `
             <div class="card card-interactive text-center" onclick="app.openTutorial('${app.id}')">
                 <div class="icon-circle" style="background-color: ${app.color}">
@@ -71,44 +105,39 @@ const app = {
     },
 
     renderGolpes() {
-        const container = document.getElementById('golpes-list');
-        container.innerHTML = this.data.golpes.map(golpe => `
-            <div class="card" style="border-top: 4px solid ${golpe.textcolor};">
-                <h3 style="display: flex; align-items: center; gap: 8px; color: ${golpe.textcolor}; margin-bottom: 8px;">
-                    <span class="material-symbols-outlined">${golpe.icon}</span> ${golpe.title}
-                </h3>
-                <p class="mb-md">${golpe.desc}</p>
-                <div style="background: #f0fdf4; padding: 12px; border-radius: 8px;">
-                    <strong style="color: #166534; display: block; margin-bottom: 8px;">✓ O Que Fazer:</strong>
-                    <ul style="color: #15803d; font-size: 14px; padding-left: 20px;">
-                        ${golpe.tips.map(tip => `<li>${tip}</li>`).join('')}
-                    </ul>
+        const container = document.getElementById('golpes-grid');
+        // Filtramos apenas os apps que possuem dados cadastrados na lista de golpes
+        const golpesDisponiveis = this.data.apps.filter(app => this.data.golpes.find(g => g.id === app.id));
+
+        container.innerHTML = golpesDisponiveis.map(app => `
+            <div class="card card-interactive text-center" onclick="app.openGolpe('${app.id}')" style="border: 2px solid #fee2e2;">
+                <div class="icon-circle" style="background-color: ${app.color}">
+                    <span class="material-symbols-outlined">${app.icon}</span>
                 </div>
+                <h3 style="font-size: 16px; margin-bottom: 4px; color: #b91c1c;">${app.name}</h3>
+                <p style="font-size: 12px; color: #666;">Precauções</p>
             </div>
         `).join('');
     },
 
-    // 4. Detalhe do Tutorial
+    // 4. Lógicas de Detalhe de Telas
     openTutorial(appId) {
         const appData = this.data.apps.find(a => a.id === appId);
         if(!appData) return;
 
-        // Configura o Cabeçalho
         const header = document.getElementById('detail-header');
         header.style.backgroundColor = appData.color;
         document.getElementById('detail-title').innerText = appData.name;
         document.getElementById('detail-icon').innerHTML = `<span class="material-symbols-outlined" style="color: ${appData.color}">${appData.icon}</span>`;
 
-        // Configura o Conteúdo
         const content = document.getElementById('detail-content');
         content.innerHTML = `
             <div class="card mb-lg" style="border-left: 4px solid #3b82f6;">
                 <h3 style="color: #1e3a8a; margin-bottom: 8px;">Conectando ao que Você Conhece</h3>
                 <p><strong>Tecnologia Antiga:</strong> ${appData.oldTech}</p>
-                <p style="margin-top: 8px;">${appData.tutorial || 'Tutorial detalhado em construção.'}</p>
             </div>
             
-            <h2 class="mb-md">Passo a Passo</h2>
+            <h2 class="mb-md">Passo a Passo (Exemplo)</h2>
             <div class="card mb-md">
                 <h3 class="flex-center gap-sm mb-md"><span style="background: ${appData.color}; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">1</span> Abra o Aplicativo</h3>
                 <p>Procure o ícone na sua tela inicial e toque uma vez.</p>
@@ -120,5 +149,46 @@ const app = {
 
     closeTutorial() {
         document.getElementById('tutorial-detail-view').classList.add('hidden');
+    },
+
+    openGolpe(appId) {
+        const appData = this.data.apps.find(a => a.id === appId);
+        const golpeData = this.data.golpes.find(g => g.id === appId);
+        if(!appData || !golpeData) return;
+
+        const header = document.getElementById('golpe-header');
+        header.style.backgroundColor = '#dc2626'; // Vermelho alerta
+        document.getElementById('golpe-title').innerText = 'Golpes no ' + appData.name;
+        document.getElementById('golpe-icon').innerHTML = `<span class="material-symbols-outlined" style="color: #dc2626">${appData.icon}</span>`;
+
+        const content = document.getElementById('golpe-content');
+        content.innerHTML = `
+            <h2 class="title" style="color: #991b1b; margin-bottom: 16px;">${golpeData.name}</h2>
+            <p class="mb-md" style="font-size: 18px;">${golpeData.alert}</p>
+            
+            <div class="card mb-lg" style="background-color: #fef2f2; border: 1px solid #fca5a5;">
+                <h3 style="color: #991b1b; display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                    <span class="material-symbols-outlined">campaign</span> Exemplos de como eles abordam:
+                </h3>
+                <ul style="padding-left: 20px; color: #7f1d1d; line-height: 1.6;">
+                    ${golpeData.exemplos.map(ex => `<li style="margin-bottom: 8px;"><em>${ex}</em></li>`).join('')}
+                </ul>
+            </div>
+
+            <div class="card" style="background-color: #f0fdf4; border: 1px solid #86efac;">
+                <h3 style="color: #166534; display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                    <span class="material-symbols-outlined">check_circle</span> O que você deve fazer:
+                </h3>
+                <ul style="padding-left: 20px; color: #15803d; line-height: 1.6; font-size: 16px;">
+                    ${golpeData.tips.map(tip => `<li style="margin-bottom: 10px;">${tip}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+
+        document.getElementById('golpe-detail-view').classList.remove('hidden');
+    },
+
+    closeGolpe() {
+        document.getElementById('golpe-detail-view').classList.add('hidden');
     }
 };

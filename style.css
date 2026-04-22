@@ -96,3 +96,18 @@ body { background-color: var(--background); color: var(--text-main); font-size: 
 .bottom-nav { position: fixed; bottom: 0; width: 100%; height: var(--nav-height); background: var(--surface); display: flex; box-shadow: 0 -4px 6px -1px rgba(0,0,0,0.05); }
 .nav-item { flex: 1; border: none; background: transparent; color: var(--text-muted); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; }
 .nav-item.active { color: var(--primary); }
+
+/* Adições para validação do formulário */
+.error-msg {
+    color: var(--danger);
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: -4px;
+}
+.error-msg.hidden {
+    display: none;
+}
+.input-error {
+    border-color: var(--danger) !important;
+    background-color: var(--danger-light);
+}
