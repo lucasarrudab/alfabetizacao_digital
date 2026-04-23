@@ -348,6 +348,25 @@ body {
   font-size: 20px;
 }
 
+.btn-bypass {
+  margin-top: 16px;
+  background: transparent;
+  border: 1px dashed #ccc;
+  color: #999;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-bypass:hover {
+  background-color: #f0f0f0;
+  color: #666;
+  border-color: #999;
+}
+
 /* Alertas e Badges */
 .alert {
   padding: 16px;
@@ -439,4 +458,20 @@ body {
 .nav-item span.material-symbols-outlined {
   font-size: 24px;
   margin-bottom: 4px;
+}
+
+.error-msg {
+  color: var(--danger);
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: -4px;
+}
+
+.error-msg.hidden {
+  display: none !important;
+}
+
+.input-error {
+  border-color: var(--danger) !important;
+  background-color: var(--danger-light) !important;
 }

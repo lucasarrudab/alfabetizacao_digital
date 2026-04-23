@@ -2,10 +2,7 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ajudante Tech - Alfabetização Digital</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="simulacoes/css/youtube.css" />
@@ -79,6 +76,9 @@
         <button class="btn btn-primary w-full btn-large" onclick="app.login()">
           Entrar
         </button>
+        <button type="button" class="btn-bypass" onclick="app.login(true)">
+          Acesso Rápido (Desenvolvimento)
+        </button>
       </div>
     </div>
 
@@ -90,11 +90,9 @@
             <span class="material-symbols-outlined">logout</span> Sair
           </button>
         </div>
-
         <p class="text-muted mb-md">
           Escolha um dos caminhos abaixo para começar a aprender:
         </p>
-
         <div class="nav-guide-list">
           <div class="guide-item" onclick="app.switchTab('tab-tutoriais')">
             <div class="guide-content">
@@ -156,12 +154,10 @@
             <span class="material-symbols-outlined">logout</span> Sair
           </button>
         </div>
-
         <p class="text-muted mb-md">
           Escolha um aplicativo para aprender a usá-lo. Vamos guiá-lo em cada
           etapa!
         </p>
-
         <div id="tutoriais-list" class="flex-col gap-md"></div>
       </main>
 
@@ -193,7 +189,6 @@
             <span class="material-symbols-outlined">logout</span> Sair
           </button>
         </div>
-
         <p class="text-muted mb-md">
           Pesquise uma palavra ou escolha uma categoria para aprender.
         </p>
@@ -223,7 +218,6 @@
               </div>
               <span class="material-symbols-outlined arrow">chevron_right</span>
             </div>
-
             <div
               class="guide-item"
               onclick="app.openGlossarioCategory('basic')"
@@ -241,7 +235,6 @@
               </div>
               <span class="material-symbols-outlined arrow">chevron_right</span>
             </div>
-
             <div
               class="guide-item"
               onclick="app.openGlossarioCategory('social')"
@@ -261,7 +254,6 @@
             </div>
           </div>
         </div>
-
         <div id="glossario-search-results" class="hidden flex-col gap-md"></div>
       </main>
 
@@ -338,6 +330,7 @@
         </button>
       </nav>
     </div>
+
     <div
       id="splash-screen-view"
       class="view-overlay hidden"
