@@ -34,7 +34,7 @@ O desenvolvimento prioriza a Acessibilidade Web (W3C/WCAG 2.1) e o Design Centra
 | CSS3       | Estilização e Constraste | Cores de alto contraste e fontes amplas para compensar perdas de acuidade visual |
 | JavaScript | Interatividade           | Feedback imediato para confirmar ações ou orientar desvios.                      |
 
-### 4.1 Estratégias de design aplicadas:
+### 4.1 Estratégias de design aplicadas
     Redução de Carga Cognitiva: Telas limpas, evitando a "poluição visual".
 
     Affordance Visual: Botões com pistas claras de interatividade.
