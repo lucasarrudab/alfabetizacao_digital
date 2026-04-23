@@ -1,0 +1,212 @@
+<div id="sim-google-view" class="view-overlay g-theme hidden">
+  <div class="sim-coach-lou">
+    <div id="g-instruction">
+      <strong id="g-step-label">Passo 1:</strong>
+      <span id="g-step-text"
+        >Toque na barra branca para pesquisar algo no Google.</span
+      >
+    </div>
+    <button
+      class="btn-close-sim"
+      onclick="app.closeSimulation('sim-google-view')"
+    >
+      <span class="material-symbols-outlined">close</span> Sair
+    </button>
+  </div>
+
+  <div id="g-home-screen" class="g-content">
+    <div class="g-logo">
+      <span style="color: #4285f4">G</span><span style="color: #ea4335">o</span
+      ><span style="color: #fbbc05">o</span><span style="color: #4285f4">g</span
+      ><span style="color: #34a853">l</span
+      ><span style="color: #ea4335">e</span>
+    </div>
+
+    <div class="g-search-bar" onclick="app.focusGoogleSearch()">
+      <span class="material-symbols-outlined g-mic">search</span>
+      <input
+        type="text"
+        placeholder="Pesquisar..."
+        id="g-main-input"
+        readonly
+      />
+      <span class="material-symbols-outlined g-mic">mic</span>
+      <span class="material-symbols-outlined g-mic">center_focus_strong</span>
+    </div>
+
+    <div class="g-feed">
+      <div class="g-news-card">
+        <div class="g-news-img" style="background-color: #ddd"></div>
+        <div class="g-news-info">
+          <h3>
+            Previsão do tempo: Fim de semana terá sol em quase todo o país
+          </h3>
+          <p>ClimaTempo • há 2 horas</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="g-results-screen"
+    class="hidden"
+    style="flex: 1; display: flex; flex-direction: column"
+  >
+    <div class="g-compact-header">
+      <span style="color: #4285f4; font-weight: bold; font-size: 24px">G</span>
+      <div class="g-compact-search">
+        <span
+          class="material-symbols-outlined"
+          style="color: #5f6368; font-size: 20px"
+          >search</span
+        >
+        <span style="flex: 1; font-size: 16px">Receita de bolo de cenoura</span>
+        <span
+          class="material-symbols-outlined"
+          style="color: #5f6368; font-size: 20px"
+          >close</span
+        >
+      </div>
+    </div>
+
+    <div class="g-tabs">
+      <div class="g-tab active">Tudo</div>
+      <div class="g-tab" onclick="app.openGoogleImages()">Imagens</div>
+      <div class="g-tab">Vídeos</div>
+      <div class="g-tab">Notícias</div>
+      <div class="g-tab">Shopping</div>
+    </div>
+
+    <div
+      class="g-results-list"
+      style="flex: 1; overflow-y: auto; padding-bottom: 20px"
+    >
+      <div class="g-result-item" onclick="app.finishGoogleSim()">
+        <div class="g-result-cite">
+          <span class="material-symbols-outlined" style="font-size: 16px"
+            >public</span
+          >
+          tudogostoso.com.br
+        </div>
+        <h3 class="g-result-title">Bolo de Cenoura - TudoGostoso</h3>
+        <p class="g-result-snippet">
+          Aprenda a preparar a melhor receita de bolo de cenoura. Com uma
+          cobertura de chocolate deliciosa e massa fofinha...
+        </p>
+      </div>
+
+      <div class="g-result-item" onclick="app.finishGoogleSim()">
+        <div class="g-result-cite">
+          <span class="material-symbols-outlined" style="font-size: 16px"
+            >public</span
+          >
+          panelinha.com.br
+        </div>
+        <h3 class="g-result-title">
+          Bolo de cenoura com cobertura de chocolate
+        </h3>
+        <p class="g-result-snippet">
+          A receita clássica que não pode faltar. Veja o passo a passo com fotos
+          e dicas da Rita Lobo para o bolo perfeito.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="g-images-screen"
+    class="hidden"
+    style="flex: 1; display: flex; flex-direction: column"
+  >
+    <div class="g-compact-header">
+      <span style="color: #4285f4; font-weight: bold; font-size: 24px">G</span>
+      <div class="g-compact-search">
+        <span
+          class="material-symbols-outlined"
+          style="color: #5f6368; font-size: 20px"
+          >search</span
+        >
+        <span style="flex: 1; font-size: 16px">Receita de bolo de cenoura</span>
+        <span
+          class="material-symbols-outlined"
+          style="color: #5f6368; font-size: 20px"
+          >close</span
+        >
+      </div>
+    </div>
+
+    <div class="g-tabs">
+      <div class="g-tab" onclick="app.executeGoogleSearch()">Tudo</div>
+      <div class="g-tab active">Imagens</div>
+      <div class="g-tab">Vídeos</div>
+      <div class="g-tab">Notícias</div>
+    </div>
+
+    <div class="g-images-grid" style="flex: 1; overflow-y: auto; padding: 8px">
+      <div
+        class="g-image-card"
+        onclick="app.finishGoogleSim()"
+        style="
+          background-color: #fca5a5;
+          height: 150px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+        "
+      >
+        <span class="material-symbols-outlined" style="font-size: 48px"
+          >cake</span
+        >
+      </div>
+      <div
+        class="g-image-card"
+        onclick="app.finishGoogleSim()"
+        style="
+          background-color: #fdba74;
+          height: 180px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+        "
+      >
+        <span class="material-symbols-outlined" style="font-size: 48px"
+          >bakery_dining</span
+        >
+      </div>
+      <div
+        class="g-image-card"
+        onclick="app.finishGoogleSim()"
+        style="
+          background-color: #fcd34d;
+          height: 160px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+        "
+      >
+        <span class="material-symbols-outlined" style="font-size: 48px"
+          >cake</span
+        >
+      </div>
+      <div
+        class="g-image-card"
+        onclick="app.finishGoogleSim()"
+        style="
+          background-color: #fb923c;
+          height: 140px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+        "
+      >
+        <span class="material-symbols-outlined" style="font-size: 48px"
+          >restaurant</span
+        >
+      </div>
+    </div>
+  </div>
+</div>
