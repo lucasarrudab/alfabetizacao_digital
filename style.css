@@ -251,6 +251,22 @@ body {
   font-size: 32px;
 }
 
+.error-msg {
+  color: var(--danger);
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: -4px;
+}
+
+.error-msg.hidden {
+  display: none !important;
+}
+
+.input-error {
+  border-color: var(--danger) !important;
+  background-color: var(--danger-light) !important;
+}
+
 /* Formulários */
 .input-group {
   margin-bottom: 16px;
