@@ -39,6 +39,13 @@ body {
   background-color: var(--background);
   color: var(--text-main);
   font-size: 16px;
+  width: 100%;
+  max-width: 450px;
+  height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  overflow-x: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
 }
 
 /* Sistema de Views (SPA) */
@@ -426,17 +433,17 @@ body {
 }
 
 .error-msg {
-    color: var(--danger);
-    font-size: 14px;
-    font-weight: 500;
-    margin-top: -4px;
+  color: var(--danger);
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: -4px;
 }
 
 .error-msg.hidden {
-    display: none !important;
+  display: none !important;
 }
 
 .input-error {
-    border-color: var(--danger) !important;
-    background-color: var(--danger-light) !important;
+  border-color: var(--danger) !important;
+  background-color: var(--danger-light) !important;
 }
