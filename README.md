@@ -1,8 +1,6 @@
 # Letramento Digital na Terceira Idade
     Desenvolvimento de um workshop com interface simulada para promoção da autonomia.
-
 [Acesse o site!](https://lucasarrudab.github.io/alfabetizacao_digital/index.html)
-
 ## Sumário:
 - [Letramento Digital na Terceira Idade](#letramento-digital-na-terceira-idade)
   - [Sumário:](#sumário)
