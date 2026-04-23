@@ -16,6 +16,7 @@ const app = {
   ...email,
   ...google,
   ...telefone,
+
   login() {
     document.getElementById("login-view").classList.remove("active");
     document.getElementById("app-view").classList.add("active");
