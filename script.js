@@ -18,11 +18,42 @@ const app = {
   ...telefone,
 
   login() {
-    document.getElementById("login-view").classList.remove("active");
-    document.getElementById("app-view").classList.add("active");
-    this.renderTutoriais();
-    this.renderGolpes();
-    this.renderGlossario();
+    const emailInput = document.getElementById("login-email");
+    const passInput = document.getElementById("login-password");
+    const emailError = document.getElementById("email-error");
+    const passError = document.getElementById("password-error");
+
+    let isValid = true;
+
+    emailInput.classList.remove("input-error");
+    passInput.classList.remove("input-error");
+    emailError.classList.add("hidden");
+    passError.classList.add("hidden");
+
+    const emailVal = emailInput.value.trim();
+    if (!emailVal.includes("@") || !emailVal.includes(".")) {
+      emailError.classList.remove("hidden");
+      emailInput.classList.add("input-error");
+      isValid = false;
+    }
+
+    if (passInput.value.length < 6) {
+      passError.classList.remove("hidden");
+      passInput.classList.add("input-error");
+      isValid = false;
+    }
+
+    if (isValid) {
+      document.getElementById("login-view").classList.remove("active");
+      document.getElementById("app-view").classList.add("active");
+
+      if (this.renderTutoriais) this.renderTutoriais();
+      if (this.renderGlossario) this.renderGlossario();
+      this.renderGolpesGrid(); // Renderiza a grade de golpes
+
+      emailInput.value = "";
+      passInput.value = "";
+    }
   },
 
   logout() {
@@ -41,12 +72,6 @@ const app = {
 
     document.getElementById(tabId).classList.add("active");
     if (btnElement) btnElement.classList.add("active");
-  },
-
-  nextSimStep(appId, stepNumber) {
-    if (appId === "youtube" && stepNumber === 2) {
-      this.openYoutubeVideo();
-    }
   },
 };
 

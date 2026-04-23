@@ -46,7 +46,15 @@
               >help</span
             ></label
           >
-          <input type="email" placeholder="seunome@email.com" />
+          <input
+            type="email"
+            id="login-email"
+            placeholder="seunome@email.com"
+          />
+          <span id="email-error" class="error-msg hidden"
+            >Email inválido! Lembre-se de adicionar o @ e o final (ex:
+            @gmail.com).</span
+          >
         </div>
 
         <div class="input-group">
@@ -58,7 +66,14 @@
               >help</span
             ></label
           >
-          <input type="password" placeholder="Digite sua senha" />
+          <input
+            type="password"
+            id="login-password"
+            placeholder="Digite sua senha"
+          />
+          <span id="password-error" class="error-msg hidden"
+            >Senha inválida! É necessário ter no mínimo 6 dígitos.</span
+          >
         </div>
 
         <button class="btn btn-primary w-full btn-large" onclick="app.login()">
@@ -87,7 +102,7 @@
               <div class="guide-text">
                 <span class="guide-title">Aplicativos</span>
                 <span class="guide-subtitle"
-                  >Aprenda a usar aplicativos como telefone, youtube e
+                  >Aprenda a usar aplicativos como telefone, YouTube e
                   outros</span
                 >
               </div>
@@ -266,12 +281,18 @@
       </div>
 
       <main id="tab-golpes" class="tab-content screen-padding">
-        <h2 class="title flex-center gap-sm">
-          <span class="material-symbols-outlined text-danger">warning</span>
-          Conscientização sobre Golpes
-        </h2>
+        <div class="header-main">
+          <h2 class="title flex-center gap-sm" style="margin: 0">
+            <span class="material-symbols-outlined text-danger">warning</span>
+            Prevenção a Golpes
+          </h2>
+          <button class="btn-logout" onclick="app.logout()">
+            <span class="material-symbols-outlined">logout</span> Sair
+          </button>
+        </div>
         <p class="text-muted mb-md">
-          Aprenda a identificar e se proteger de golpes comuns
+          Selecione um aplicativo para aprender sobre os golpes mais comuns e
+          como se proteger.
         </p>
 
         <div class="alert bg-danger-light text-danger-dark mb-md">
@@ -279,8 +300,21 @@
           senhas, PINs ou pagamento via cartão de presente.
         </div>
 
-        <div id="golpes-list" class="flex-col gap-md"></div>
+        <div id="golpes-grid" class="grid-2"></div>
       </main>
+
+      <div id="golpe-detail-view" class="view-overlay hidden">
+        <div class="detail-header" id="golpe-header">
+          <button class="btn-back" onclick="app.closeGolpe()">
+            <span class="material-symbols-outlined">arrow_back</span> Voltar
+          </button>
+          <div class="detail-title-group">
+            <div class="icon-circle bg-white" id="golpe-icon"></div>
+            <h1 id="golpe-title">Golpes no App</h1>
+          </div>
+        </div>
+        <div class="screen-padding" id="golpe-content"></div>
+      </div>
 
       <nav class="bottom-nav">
         <button

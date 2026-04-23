@@ -97,20 +97,59 @@ export const data = {
   ],
   golpes: [
     {
-      title: "Golpes por Telefone",
-      icon: "phone_in_talk",
-      color: "#fee2e2",
-      textcolor: "#dc2626",
-      desc: "Se passando por órgãos do governo.",
-      tips: ["Desligue imediatamente", "Nunca forneça dados pessoais"],
+      id: "telefone",
+      name: "Golpes por Telefone",
+      alert: "Ligação de falsos atendentes.",
+      exemplos: [
+        '"Aqui é do banco, sua conta foi bloqueada, me informe sua senha."',
+        '"Você ganhou um prêmio, transfira uma taxa para liberar."',
+      ],
+      tips: [
+        "Desligue imediatamente, não converse.",
+        "O banco nunca pede sua senha por telefone.",
+        "Ligue de volta usando o número atrás do seu cartão.",
+      ],
     },
     {
-      title: "Phishing por Email",
-      icon: "mail",
-      color: "#ffedd5",
-      textcolor: "#ea580c",
-      desc: "Emails falsos pedindo senhas.",
-      tips: ["Não clique em links", "Exclua e marque como spam"],
+      id: "mensagens",
+      name: "Golpes no WhatsApp/SMS",
+      alert: "Links maliciosos e falsos conhecidos.",
+      exemplos: [
+        '"Mãe, meu celular quebrou, anota meu número novo."',
+        '"Sua encomenda foi taxada, clique aqui para pagar."',
+      ],
+      tips: [
+        "Nunca faça PIX urgente para conhecidos sem antes ligar e ouvir a voz deles.",
+        "Não clique em links SMS de números desconhecidos.",
+      ],
+    },
+    {
+      id: "email",
+      name: "Phishing por Email",
+      alert: "E-mails falsos pedindo dados.",
+      exemplos: [
+        '"Sua conta Netflix será cancelada, atualize seu cartão."',
+        '"Aviso da Receita Federal: pendência no CPF."',
+      ],
+      tips: [
+        "Verifique o remetente: o e-mail parece oficial?",
+        "Órgãos do governo não enviam cobranças por e-mail.",
+        "Não clique em links; acesse o site oficial pelo navegador.",
+      ],
+    },
+    {
+      id: "navegador",
+      name: "Sites e Lojas Falsas",
+      alert: "Promoções boas demais para ser verdade.",
+      exemplos: [
+        '"Queima de estoque: Geladeira por R$ 300,00."',
+        '"Site idêntico ao oficial, mas com URL estranha."',
+      ],
+      tips: [
+        "Desconfie de preços extremamente baixos.",
+        "Compre apenas em lojas conhecidas.",
+        "Verifique se o site possui um cadeado de segurança na barra superior.",
+      ],
     },
   ],
 };
