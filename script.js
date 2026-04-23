@@ -17,7 +17,7 @@ const app = {
   ...google,
   ...telefone,
   /* Data vai pro data.js */
-  login() {
+  login(isBypass = false) {
     const emailInput = document.getElementById("login-email");
     const passInput = document.getElementById("login-password");
     const emailError = document.getElementById("email-error");
@@ -25,22 +25,24 @@ const app = {
 
     let isValid = true;
 
-    emailInput.classList.remove("input-error");
-    passInput.classList.remove("input-error");
-    emailError.classList.add("hidden");
-    passError.classList.add("hidden");
+    if (!isBypass) {
+      emailInput.classList.remove("input-error");
+      passInput.classList.remove("input-error");
+      emailError.classList.add("hidden");
+      passError.classList.add("hidden");
 
-    const emailVal = emailInput.value.trim();
-    if (!emailVal.includes("@") || !emailVal.includes(".")) {
-      emailError.classList.remove("hidden");
-      emailInput.classList.add("input-error");
-      isValid = false;
-    }
+      const emailVal = emailInput.value.trim();
+      if (!emailVal.includes("@") || !emailVal.includes(".")) {
+        emailError.classList.remove("hidden");
+        emailInput.classList.add("input-error");
+        isValid = false;
+      }
 
-    if (passInput.value.length < 6) {
-      passError.classList.remove("hidden");
-      passInput.classList.add("input-error");
-      isValid = false;
+      if (passInput.value.length < 6) {
+        passError.classList.remove("hidden");
+        passInput.classList.add("input-error");
+        isValid = false;
+      }
     }
 
     if (isValid) {
@@ -49,10 +51,10 @@ const app = {
 
       if (this.renderTutoriais) this.renderTutoriais();
       if (this.renderGlossario) this.renderGlossario();
-      this.renderGolpesGrid(); // Renderiza a grade de golpes
+      if (this.renderGolpes) this.renderGolpes();
 
-      emailInput.value = "";
-      passInput.value = "";
+      if (emailInput) emailInput.value = "";
+      if (passInput) passInput.value = "";
     }
   },
 

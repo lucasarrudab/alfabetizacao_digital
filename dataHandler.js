@@ -97,17 +97,25 @@ export const dataHandler = {
   renderGlossario() {},
 
   renderGolpes() {
-    const container = document.getElementById("golpes-list");
+    const container = document.getElementById("golpes-grid");
     if (!container) return;
 
     container.innerHTML = data.golpes
       .map(
         (golpe) => `
-            <div class="card" style="border-top: 4px solid ${golpe.textcolor};">
-                <h3 style="display: flex; align-items: center; gap: 8px; color: ${golpe.textcolor}; margin-bottom: 8px;">
-                    <span class="material-symbols-outlined">${golpe.icon}</span> ${golpe.title}
+            <div class="card" style="border-top: 4px solid #ef4444;">
+                <h3 style="display: flex; align-items: center; gap: 8px; color: #ef4444; margin-bottom: 8px;">
+                    <span class="material-symbols-outlined">warning</span> ${golpe.name}
                 </h3>
-                <p class="mb-md">${golpe.desc}</p>
+                <p class="mb-md"><strong>Alerta:</strong> ${golpe.alert}</p>
+                
+                <div style="background: #fef2f2; padding: 12px; border-radius: 8px; margin-bottom: 12px;">
+                    <strong style="color: #991b1b; display: block; margin-bottom: 8px;">Cuidado com frases como:</strong>
+                    <ul style="color: #b91c1c; font-size: 14px; padding-left: 20px;">
+                        ${golpe.exemplos.map((exemplo) => `<li>${exemplo}</li>`).join("")}
+                    </ul>
+                </div>
+
                 <div style="background: #f0fdf4; padding: 12px; border-radius: 8px;">
                     <strong style="color: #166534; display: block; margin-bottom: 8px;">✓ O Que Fazer:</strong>
                     <ul style="color: #15803d; font-size: 14px; padding-left: 20px;">
