@@ -16,7 +16,7 @@ const app = {
   ...email,
   ...google,
   ...telefone,
-
+  /* Data vai pro data.js */
   login() {
     const emailInput = document.getElementById("login-email");
     const passInput = document.getElementById("login-password");
